@@ -7,9 +7,12 @@ var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 
+
+
 var index = require('./routes/index');
 const productRoutes  = require('./routes/products.js'); // the "./" means that
 // you want it to look for the requuired in a local file (instead of NPM)
+const reviewRoutes = require('./routes/product-reviews.js');
 
 mongoose.connect('mongodb://localhost/ironshopDev');
 var app = express();
@@ -28,6 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/', productRoutes);
+app.use('/', reviewRoutes);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

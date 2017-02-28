@@ -26,7 +26,7 @@ const products = [
 ];
 //Creates many objects (more than one)
 // (db.products.insertMany([....])
-// saves automatically instead of "".save((err)=> { 
+// saves automatically instead of "".save((err)=> {
 Product.create(products,(err, docs) => {
   if (err) {
     throw err;
