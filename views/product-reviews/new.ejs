@@ -6,7 +6,7 @@
   </head>
   <body>
   <h1> Review <%= product.name %> </h1>
-  <form action="/products/<%= product._id %>/reviews" method="POST">
+  <form action="/products/<%= product._id %>/reviews/new" method="POST">
   <label for="author">Email Address</label>
   <input type="text" name="author" id="author">
 

@@ -4,10 +4,18 @@ const Review = require('./review.js');
 const Schema = mongoose.Schema; // Schema Constructor Object
 
 const productSchema = new Schema({
-  name: String,
-  price: Number,
-  imageUrl: String,
-  description: String,
+  name: {
+    type : String,
+    required: [true, 'Enter your damn name bru'],
+    minlength: [2, 'Name must be 2 charecters or above']
+    },
+  price: {
+    type: Number,
+    required: [true, 'Please enter a price'],
+    min: [0, 'please make your price 0 or above']
+      },
+  imageUrl: { type: String, required: true},
+  description:  { type: String, required: true},
   reviews: [Review.schema]
 });
 

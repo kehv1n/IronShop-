@@ -5,8 +5,19 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+
+    <% if (errorMessage) { %>
+    <p class = "error"> <%= errorMessage %> </p>
+    <%} %>
+
+    <% if (typeof errors !== 'undefined') { %>
+      <% for (let key in errors) { %>
+      <div> <% errors[key].message %> </div>
+      <%} %>
+    <%} %>
+
     <h1>Add a new Product!</h1>
-    <form action="/products" method="post">
+    <form action="/products/new" method="post">
   <label for="name">Name</label>
   <input type="text" id="name" name="name">
 

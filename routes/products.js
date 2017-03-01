@@ -21,10 +21,12 @@ router.get('/products',(req, res, next) =>{
 
 router.get('/products/new', (req, res, next) => {
   //display views/products/new.ejs
-  res.render('products/new');
+  res.render('products/new', {
+    errorMessage: ''
+  });
 });
 
-router.post('/products', (req, res, next) => {
+router.post('/products/new', (req, res, next) => {
   const productInfo = {
   name: req.body.name, /// CORRESPOND TO THE INPUT NAMES
   price: req.body.price,// IN FORM
@@ -36,10 +38,15 @@ router.post('/products', (req, res, next) => {
 
   theProduct.save((err) => {
     if (err) {
-      next(err);
+        res.render('products/new', {
+          errorMessage: 'Validation failed!',
+          errors: theProduct.errors //Object containing the data based on the specific error that occured based on your validation rules
+      });
       return;
     }
-    res.redirect('/products');
+    res.render('/products/index', {
+      products: theProduct
+    });
   });
 });
 
